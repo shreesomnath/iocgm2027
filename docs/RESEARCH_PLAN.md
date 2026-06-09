@@ -1,43 +1,55 @@
-# Research Plan: Dynamic Multi-Sensor GeoAI Framework for Real-Time Landslide Susceptibility Evolution in Nepal’s Mid-Hills (2021–2026)
+# Comprehensive Research Plan: A Dynamic Multi-Sensor GeoAI Framework for Landslide Susceptibility Evolution and Cross-Basin Transferability in Nepal
 
-## 1. Introduction and Rationale
-The Himalayan region, particularly Nepal, is highly vulnerable to rainfall-induced landslides. Traditional Landslide Susceptibility Mapping (LSM) often relies on static topographic factors and provides a "snapshot" of risk. Recent high-impact research (2024-2025) emphasizes the need for **Dynamic LSM** and **Cross-Basin Transferability**, especially using multi-sensor fusion (Sentinel-1 SAR and Sentinel-2 optical). 
+## 1. Introduction and Problem Statement
+Nepal’s mid-hills are among the most landslide-prone regions globally, with over 80% of fatalities occurring during the monsoon season (July–September). Despite the proliferation of Landslide Susceptibility Mapping (LSM) studies, a critical gap persists: **existing models are largely static**, failing to account for the dynamic interplay between pre-monsoon vegetation health, monsoon-driven soil saturation, and post-earthquake landscape destabilization. 
 
-This research proposes a robust, open-data GeoAI workflow utilizing an **Ensemble XGBoost** architecture to model the temporal evolution of landslide susceptibility (2021-2026) in the **Arun River Basin** (training) and test its operational transferability in the **Trishuli Basin** (testing). By employing **SHAP (Explainable AI)**, the study will provide physically consistent insights into variable importance across different monsoonal regimes.
+Furthermore, the "black-box" nature of traditional Machine Learning (ML) models limits their operational utility for disaster management agencies. This research proposes a **Dynamic GeoAI Framework** that integrates multi-sensor satellite synergy (Sentinel-1/2) with high-resolution topographic data and a novel **Hybrid Rainfall Fusion** strategy. By employing **Explainable AI (XAI)**, this study aims to transition from simple "where" mapping to a causal "why and when" understanding of landslide triggers in the Arun and Trishuli River Basins.
 
-## 2. Methodology & Data Sources
-### 2.1. Open Data Acquisition
-*   **Sentinel-1 (SAR):** C-band GRD (VV/VH polarizations) for soil moisture proxies and surface roughness.
-*   **Sentinel-2 (Optical):** High-resolution (10m) multi-spectral imagery for vegetation indices (NDVI, EVI).
-*   **ALOS PALSAR / SRTM DEM:** 30m Digital Elevation Model for topographic derivatives (Slope, Aspect, Curvature, TWI).
-*   **Rainfall:** CHIRPS daily precipitation data.
-*   **Ground Truth Inventories:** NASA Global Landslide Catalog (GLC), Durham/BGS Nepal Inventories, supplemented by manual Google Earth validation.
+---
 
-### 2.2. GeoAI Workflow and Modeling
-1.  **Google Earth Engine (GEE) Preprocessing:** Automated cloud masking, radiometric terrain flattening, and generation of multi-temporal feature stacks.
-2.  **Ablation Study Design:**
-    *   *Model A:* Static Topography Only.
-    *   *Model B:* Topography + Optical (Sentinel-2).
-    *   *Model C (Synergy):* Topography + Optical + SAR (Sentinel-1/2 fusion).
-3.  **Machine Learning Architecture:** XGBoost Classifier optimized via Optuna for hyperparameter tuning.
-4.  **Explainability:** Implementation of SHAP values to decode the "black-box" model and quantify the spatial-temporal contribution of each feature.
+## 2. Literature Review and Research Gaps
+### 2.1 State-of-the-Art in Himalayan LSM (2024–2025)
+Recent literature (e.g., *Bhattarai et al., 2024*; *Hussain et al., 2025*) has moved toward ensemble deep learning. However, several limitations remain:
+*   **The "Static" Limitation:** Most LSMs use a single snapshot of land cover and topography. Studies by *Yu et al. (2025)* suggest that incorporating dynamic soil moisture can improve AUC scores from 0.82 to 0.91, yet this is rarely operationalized in Nepal.
+*   **The SAR Challenge:** While Sentinel-1 SAR is theoretically vital for cloud penetration, its implementation in steep Himalayan terrain is hindered by geometric distortions (layover, shadow). Recent breakthroughs in Radiometric Terrain Flattening (RTF) now allow for more reliable backscatter extraction (*Dahal et al., 2025*).
+*   **The Transferability Gap:** Models trained in one basin (e.g., East Nepal) often fail in Central Nepal due to "Geological Fingerprinting." Research into Domain Adaptation for LSM is still in its infancy.
 
-### 2.3. Cross-Basin Transferability
-The model trained in the Arun Basin will be directly applied to the Trishuli Basin to evaluate geographic generalization, a key requirement for national-scale disaster risk reduction strategies.
+### 2.2 Identified Research Gaps to Address:
+1.  **Temporal Evolution Gap:** No major study has mapped the continuous evolution of susceptibility in Nepal from 2021 to 2026, a period marked by extreme monsoon anomalies.
+2.  **Sensor Synergy Gap:** The specific contribution of Sentinel-1 (SAR) vs. Sentinel-2 (Optical) for *dynamic* susceptibility remains unquantified for the mid-hills.
+3.  **Explainability Gap:** There is a lack of physically consistent AI models that align with geomorphological laws (e.g., the relationship between TWI, SAR backscatter, and failure probability).
 
-## 3. Project Timeline (3 Months)
+---
 
-### Month 1: Data Curation & Preprocessing
-*   **Week 1-2:** Literature review finalization and study area boundary delineation (QGIS).
-*   **Week 3-4:** Develop GEE scripts to extract and download the 2021-2026 feature stack (S1, S2, DEM, Rainfall) for both Arun and Trishuli basins. Prepare the consolidated CSV datasets.
+## 3. Methodology
+### 3.1 Study Area and Data Fusion
+*   **AOI 1 (Arun Basin):** Training site characterized by high relief and intensive infrastructure development.
+*   **AOI 2 (Trishuli Basin):** Testing site for spatial transferability, representing Central Nepal's seismic-prone geology.
+*   **Hybrid Rainfall Fusion:** We address the "DHM Gap" (2020-2023) by fusing DHM Nepal station data with GPM IMERG V07 using a linear bias correction.
+    *   $P_{fused} = w_1 P_{DHM} + w_2 (\alpha P_{GPM})$, where $\alpha$ is the calibration coefficient derived from pre-2020 overlapping data.
 
-### Month 2: Model Development & Explainability
-*   **Week 1-2:** Data cleaning, handling class imbalance (e.g., SMOTE), and initial Logistic Regression baseline modeling in Python.
-*   **Week 3-4:** Train Ensemble XGBoost models. Conduct the Ablation Study (Models A, B, C) and generate SHAP summary plots.
+### 3.2 Feature Engineering & Model Architecture
+*   **Dynamic Features:** Monthly NDVI (Sentinel-2), VV/VH Backscatter (Sentinel-1), and Antecedent Rainfall (GPM/DHM).
+*   **Static Features:** Slope, Aspect, TWI, Distance to Road/Fault, Geology (DMG Nepal).
+*   **Modeling:** **Ensemble XGBoost** with SHAP-based interpretability.
+    *   **Ablation Study:** Comparing Model A (Topo), Model B (Topo+Opt), and Model C (Topo+Opt+SAR).
 
-### Month 3: Validation, Transferability & Finalization
-*   **Week 1-2:** Execute the cross-basin transferability test on the Trishuli dataset. Calculate evaluation metrics (AUC-ROC, F1-Score).
-*   **Week 3-4:** Generate final 30m Susceptibility Maps (GeoTIFFs). Draft and finalize the research paper/extended abstract for IOCGM 2027.
+---
 
-## 4. Expected Impact
-This study directly addresses gaps identified in the *National Landslide Risk Management Strategy for Nepal* by providing a scalable, dynamic risk assessment tool that leverages open cloud computing, advancing the S3 (GeoAI) track objectives for IOCGM 2027.
+## 4. Implementation Timeline (3 Months)
+| Week | Focus Area | Key Deliverable |
+| :--- | :--- | :--- |
+| **1-2** | **Literature & Data** | Comprehensive review of 10+ core papers; DHM/GPM fusion script. |
+| **3-4** | **GEE Extraction** | 2021-2026 Feature Stacks (S1, S2, DEM) exported for both basins. |
+| **5-6** | **Model Training** | XGBoost baseline vs. Ensemble; Hyperparameter tuning (Optuna). |
+| **7-8** | **Ablation & XAI** | Model C validation; SHAP summary and dependence plots. |
+| **9-10**| **Transferability** | Cross-basin testing; Calculation of Transferability Robustness Index. |
+| **11-12**| **Finalization** | LaTeX compilation; GitHub repo documentation; IOCGM Abstract. |
+
+---
+
+## 5. Technical Rigor and Expected Impacts
+This study will provide:
+1.  **A scalable GeoAI pipeline** for NDRRMA (Nepal) to update susceptibility maps near-real-time.
+2.  **Scientific insight** into the role of SAR-based moisture proxies in Himalayan slope stability.
+3.  **A high-impact publication** addressing the global need for generalizable landslide models.

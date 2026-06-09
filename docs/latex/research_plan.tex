@@ -6,55 +6,68 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{cite}
 
-\title{\textbf{Research Plan: Dynamic Multi-Sensor GeoAI Framework for Real-Time Landslide Susceptibility Evolution in Nepal}}
-\author{IOCGM 2027 Researcher Skill Output}
+\title{\textbf{Strategic Research Proposal: A Dynamic Multi-Sensor GeoAI Framework for Real-Time Landslide Susceptibility Evolution and Cross-Basin Transferability in Nepal}}
+\author{shreesomnath \\ \small{IOCGM 2027 Research Initiative}}
 \date{June 2026}
 
 \begin{document}
 
 \maketitle
 
-\section{Introduction}
-This research plan outlines a comprehensive workflow to model landslide susceptibility in the Arun River Basin, Nepal, using 2020--2026 data. The core innovation lies in the \textbf{Hybrid Rainfall Fusion} (DHM + GPM) and the \textbf{Sentinel-1/2 Synergy}.
+\begin{abstract}
+Landslide susceptibility mapping (LSM) in Nepal is currently dominated by static models that fail to capture the temporal dynamics of environmental triggers. This research proposes a novel GeoAI framework integrating Sentinel-1 SAR and Sentinel-2 optical synergy with a hybrid rainfall fusion strategy. By leveraging the 2021--2026 temporal range and focusing on cross-basin transferability (Arun to Trishuli), this study aims to provide physically consistent, explainable insights (via SHAP) for national disaster risk management.
+\end{abstract}
 
-\section{Research Gaps \& Literature Review}
-\begin{itemize}
-    \item \textbf{Temporal Gap:} Existing maps (Durham/BGS) end in 2020. This study covers the 2021--2026 era.
-    \item \textbf{Data Gap:} Most models use only optical data. We utilize Sentinel-1 SAR as a moisture proxy.
-    \item \textbf{Explainability:} Shifting from "black-box" ML to SHAP-based Explainable AI (XAI).
-\end{itemize}
+\section{Introduction and Rationale}
+Nepal's Mid-Hills face chronic landslide hazards, exacerbated by intensive road construction and climatic anomalies. Current mapping efforts by agencies like NDRRMA are hindered by "static snapshots" which do not account for post-seismic landscape healing or monsoon-driven soil saturation levels. This research seeks to bridge the gap between reactive mapping and proactive, dynamic susceptibility forecasting.
+
+\section{Literature Review \& Research Gaps}
+\subsection{Recent Advances (2024--2025)}
+Recent studies in the Hindu Kush Himalaya (HKH) have transitioned to ensemble GeoAI. \textit{Bhattarai et al. (2024)} demonstrated the effectiveness of hybrid CNN-SVM models, while \textit{Hussain et al. (2025)} highlighted the importance of explainable AI (XAI) in increasing model transparency for policy-makers.
+
+\subsection{Identified Research Gaps}
+\begin{enumerate}
+    \item \textbf{Dynamic Sensitivity:} There is a lack of operational models integrating monthly Sentinel-1 SAR backscatter as a proxy for soil moisture in the Nepal mid-hills.
+    \item \textbf{Transferability:} Models often lack generalization capabilities when transferred across basins with different lithological fingerprints.
+    \item \textbf{Temporal Continuity:} No major study has continuously modeled the evolution of risk across the high-anomaly period of 2021--2026.
+\end{enumerate}
 
 \section{Methodology}
 \subsection{Hybrid Rainfall Fusion}
-We address DHM Nepal data gaps (due to COVID-19/Earthquake legacy) by performing a linear bias correction on GPM IMERG satellite data using available DHM station records.
+To address data discontinuities in the Department of Hydrology and Meteorology (DHM) Nepal records, we implement a linear bias correction for GPM IMERG data:
 \begin{equation}
-    P_{fused} = 
-    \begin{cases} 
-    P_{DHM} & \text{if data exists} \\
-    \alpha \cdot P_{GPM} & \text{to fill gaps}
-    \end{cases}
+    P_{fused}(t) = w_D P_{DHM}(t) + w_G [\alpha \cdot P_{GPM}(t)]
 \end{equation}
+where $\alpha$ is calibrated against historical overlaps and $w_D, w_G$ are weighting factors based on station proximity.
 
-\subsection{Modeling}
-We employ an \textbf{XGBoost} ensemble with an ablation study:
+\subsection{GeoAI Architecture}
+We utilize an \textbf{Ensemble XGBoost} model, optimized via Bayesian optimization (Optuna). The research includes a three-stage \textbf{Ablation Study}:
 \begin{itemize}
-    \item Model A: Static Topography
-    \item Model B: Topography + S2 (NDVI)
-    \item Model C: Topography + S2 + S1 (Full Synergy)
+    \item \textbf{Model A (Control):} Static topographic factors only.
+    \item \textbf{Model B:} Topography + Sentinel-2 (NDVI/EVI).
+    \item \textbf{Model C (Target):} Full Synergy (Topography + S2 + S1 SAR).
 \end{itemize}
 
-\section{Timeline}
-\begin{description}
-    \item[Month 1:] Data Curation, Hybrid Rainfall Fusion, GEE Feature Extraction.
-    \item[Month 2:] Model Training, Ablation Study, SHAP Analysis.
-    \item[Month 3:] Cross-Basin Transferability (Trishuli), Abstract Finalization.
-\end{description}
+\section{Implementation Timeline}
+The project follows a 12-week intensive cycle:
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}llp{8cm}@{}}
+\toprule
+\textbf{Weeks} & \textbf{Phase} & \textbf{Deliverable} \\ \midrule
+1--2 & Research & In-depth literature review and DHM/GPM fusion script. \\
+3--4 & Data & GEE multi-sensor feature stacks for Arun and Trishuli. \\
+5--6 & Modeling & Baseline XGBoost and hyperparameter optimization. \\
+7--8 & XAI & SHAP dependency and summary plots (Model C). \\
+9--10 & Transfer & Cross-basin validation and error analysis. \\
+11--12 & Final & PDF compilation and GitHub repo finalization. \\ \bottomrule
+\end{tabular}
+\end{table}
 
-\section{Computation Time Estimates}
-\begin{itemize}
-    \item GEE Feature Extraction: 2--4 hours (Cloud-based).
-    \item Local Processing (CSV): 1--2 hours (on a standard laptop).
-\end{itemize}
+\section{Expected Scientific Impacts}
+The primary output will be a scalable GeoAI pipeline capable of updating landslide susceptibility near-real-time. This provides high-impact insights for the S3 track (GeoAI and Big Data) of IOCGM 2027 and directly supports Nepal's National Landslide Risk Management Strategy.
 
 \end{document}
