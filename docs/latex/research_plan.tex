@@ -1,0 +1,60 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\title{\textbf{Research Plan: Dynamic Multi-Sensor GeoAI Framework for Real-Time Landslide Susceptibility Evolution in Nepal}}
+\author{IOCGM 2027 Researcher Skill Output}
+\date{June 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+This research plan outlines a comprehensive workflow to model landslide susceptibility in the Arun River Basin, Nepal, using 2020--2026 data. The core innovation lies in the \textbf{Hybrid Rainfall Fusion} (DHM + GPM) and the \textbf{Sentinel-1/2 Synergy}.
+
+\section{Research Gaps \& Literature Review}
+\begin{itemize}
+    \item \textbf{Temporal Gap:} Existing maps (Durham/BGS) end in 2020. This study covers the 2021--2026 era.
+    \item \textbf{Data Gap:} Most models use only optical data. We utilize Sentinel-1 SAR as a moisture proxy.
+    \item \textbf{Explainability:} Shifting from "black-box" ML to SHAP-based Explainable AI (XAI).
+\end{itemize}
+
+\section{Methodology}
+\subsection{Hybrid Rainfall Fusion}
+We address DHM Nepal data gaps (due to COVID-19/Earthquake legacy) by performing a linear bias correction on GPM IMERG satellite data using available DHM station records.
+\begin{equation}
+    P_{fused} = 
+    \begin{cases} 
+    P_{DHM} & \text{if data exists} \\
+    \alpha \cdot P_{GPM} & \text{to fill gaps}
+    \end{cases}
+\end{equation}
+
+\subsection{Modeling}
+We employ an \textbf{XGBoost} ensemble with an ablation study:
+\begin{itemize}
+    \item Model A: Static Topography
+    \item Model B: Topography + S2 (NDVI)
+    \item Model C: Topography + S2 + S1 (Full Synergy)
+\end{itemize}
+
+\section{Timeline}
+\begin{description}
+    \item[Month 1:] Data Curation, Hybrid Rainfall Fusion, GEE Feature Extraction.
+    \item[Month 2:] Model Training, Ablation Study, SHAP Analysis.
+    \item[Month 3:] Cross-Basin Transferability (Trishuli), Abstract Finalization.
+\end{description}
+
+\section{Computation Time Estimates}
+\begin{itemize}
+    \item GEE Feature Extraction: 2--4 hours (Cloud-based).
+    \item Local Processing (CSV): 1--2 hours (on a standard laptop).
+\end{itemize}
+
+\end{document}
