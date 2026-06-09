@@ -1,0 +1,85 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{titlesec}
+
+% Section styling
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={IOCGM 2027 Research Proposal},
+}
+
+\title{\textbf{Dynamic Multi-Sensor GeoAI Framework for Monsoon-Driven Landslide Susceptibility Evolution and Cross-Basin Transferability in Nepal}}
+\author{shreesomnath \\ \small{IOCGM 2027 Research Initiative | Track S3: GeoAI}}
+\date{June 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Landslide susceptibility models in Nepal are predominantly static---trained once on historical inventories and applied without updating as monsoon dynamics evolve. This study proposes a dynamic, multi-sensor GeoAI framework that integrates Sentinel-1 SAR pre/post-monsoon backscatter change, Sentinel-2 monsoon composites, NASADEM-derived topographic indices (TWI, SPI, curvature), and GPM IMERG rainfall extremes to map time-sensitive landslide susceptibility across the Arun Basin (2021--2025). Quantile Mapping (QM) bias correction aligns IMERG estimates with DHM Nepal gauge records to preserve extreme-event rainfall signatures. An XGBoost ensemble model is trained with SHAP-based explainability to identify dominant conditioning and triggering factors per terrain class. A Few-Shot Transfer Learning experiment then tests whether the Arun-trained model, fine-tuned on only 5\% of labeled data, achieves competitive accuracy in the morphologically distinct Trishuli Basin---directly addressing the critical challenge of inventory-scarce basins. This framework directly supports Nepal's National Landslide Risk Management Strategy and demonstrates open-data reproducibility for the broader Hindu Kush Himalayan region.
+\end{abstract}
+
+\section{Introduction and Rationale}
+Nepal's mountainous terrain hosts some of the world's highest landslide densities, with the monsoon season (June--September) triggering over 80\% of annual landslide fatalities. The Arun and Trishuli river basins represent contrasting geomorphological regimes---Arun's deeply incised gorges with thin colluvial soils versus Trishuli's more structurally complex mid-hill geology---making them ideal paired study areas for transferability analysis.
+
+Despite substantial advances in Machine Learning-based Landslide Susceptibility Mapping (LSM), three critical gaps persist:
+\begin{enumerate}
+    \item \textbf{Temporal Rigidity:} Most models treat susceptibility as static, ignoring the progressive soil saturation and LULC change that unfolds across seasons (2021--2025 captures the catastrophic September 2024 event).
+    \item \textbf{SAR Underutilization:} Sentinel-1 backscatter has rarely been used as a moisture proxy in Nepal. Raw imagery without Radiometric Terrain Flattening (RTF) produces false signals in high-relief terrain.
+    \item \textbf{Generalization:} Models trained on well-inventoried basins rarely transfer to data-scarce areas. Few-Shot domain adaptation offers a practical path for operational deployment.
+\end{enumerate}
+
+\section{Literature Review and Research Gaps}
+Recent assessments of the September 2024 rainfall events in Central Nepal documented over 3,200 landslides in six weeks, highlighting the need for near-real-time susceptibility updates (\textit{Lamichhane et al., 2025}). While ensemble ML achieves high accuracy for co-seismic events (\textit{Pyakurel et al., 2024}), these remain event-specific snapshots. Integrating dynamic factors like accumulated rainfall and LULC change significantly improves temporal accuracy (\textit{Lee et al., 2022; Ye et al., 2025}), yet the role of Sentinel-1 SAR backscatter change as a moisture proxy remains an open frontier (\textit{Nava et al., 2025}).
+
+For high-relief terrain, RTF correction (\textit{Mullissa et al., 2021}) is essential to eliminate topographic artifacts. Furthermore, Explainable AI via SHAP (\textit{Hussain et al., 2025}) has emerged as the standard for validating GeoAI outputs against geomorphological domain knowledge. Finally, addressing transferability using domain adaptation (\textit{Su et al., 2024; Yu et al., 2025}) is critical for "no sample" basins in the Himalayas.
+
+\section{Methodology}
+\subsection{Data Fusion and Feature Engineering}
+We utilize an entirely open-access stack including NASADEM (30m), Sentinel-2 (10m), Sentinel-1 GRD (10m), and GPM IMERG (0.1$^\circ$).
+\begin{itemize}
+    \item \textbf{Dynamic SAR Feature:} Pre-to-peak monsoon VV backscatter delta ($\Delta$VV) is computed after RTF correction to capture soil moisture evolution.
+    \item \textbf{Rainfall Fusion:} Quantile Mapping (QM) aligns IMERG estimates with DHM Nepal records to correct the systematic underestimation of extreme events in the Himalayas (\textit{Nepal et al., 2021; Nair et al., 2025}).
+\end{itemize}
+
+\subsection{Modeling and Transfer Learning}
+An \textbf{XGBoost Ensemble} optimized via Bayesian Optimization (Optuna) is trained on the Arun Basin. We implement SHAP to identify feature dominance. Transferability is tested via \textbf{Few-Shot Fine-Tuning}, using 5\% of Trishuli labels to adapt the Arun-trained model via Feature-Aligned Transfer.
+
+\section{Timeline and Expected Impact}
+\begin{description}
+    \item[Month 1:] GEE extraction, RTF correction, and QM bias correction.
+    \item[Month 2:] Model training and SHAP explainability analysis.
+    \item[Month 3:] Transfer learning experiments and validation on 2024 extreme events.
+    \item[Month 4:] Abstract submission (20 Nov 2026) and final manuscript preparation.
+\end{description}
+
+The primary outcome is a scalable, reproducible GeoAI pipeline for the Hindu Kush Himalaya, providing physically consistent evidence for operational early warning system design under Nepal's NDRRMA.
+
+\section{Bibliography}
+\begin{itemize}[leftmargin=0.15in, label={}]
+    \item \textit{Hussain et al. (2025).} "Enhancing landslide susceptibility predictions with XGBoost and SHAP." \textit{Geocarto International}.
+    \item \textit{Lamichhane et al. (2025).} "Preliminary assessment of September 2024 extreme rainfall-induced landslides." \textit{Landslides}.
+    \item \textit{Lee et al. (2022).} "Dynamic landslide susceptibility analysis." \textit{Scientific Reports}.
+    \item \textit{Mullissa et al. (2021).} "Sentinel-1 SAR ARD preparation in GEE." \textit{Remote Sensing}.
+    \item \textit{Nava et al. (2025).} "Landslide mapping with deep learning: the role of SAR features." \textit{GIScience \& Remote Sensing}.
+    \item \textit{Nepal et al. (2021).} "Assessment of GPM-Era satellite products' ability to detect precipitation extremes." \textit{Atmosphere}.
+    \item \textit{Su et al. (2024).} "Feature adaptation for landslide susceptibility in no sample areas." \textit{Gondwana Research}.
+\end{itemize}
+
+\end{document}
