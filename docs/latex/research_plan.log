@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.23)  8 JUN 2026 23:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.23)  8 JUN 2026 23:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -342,11 +342,6 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@lastruleclass=\count315
 \@thisrulewidth=\dimen187
 )
-(C:\Users\Somnath Luitel\AppData\Local\Programs\MiKTeX\tex/latex/cite\cite.sty
-LaTeX Info: Redefining \cite on input line 302.
-LaTeX Info: Redefining \nocite on input line 332.
-Package: cite 2015/02/27  v 5.5
-)
 (C:\Users\Somnath Luitel\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3ba
 ckend-pdftex.def
 File: l3backend-pdftex.def 2026-02-18 L3 backend support: PDF output (pdfTeX)
@@ -354,24 +349,24 @@ File: l3backend-pdftex.def 2026-02-18 L3 backend support: PDF output (pdfTeX)
 ) (D:\masters\air_lab\iocgm2027\docs\latex\research_plan.aux)
 \openout1 = `research_plan.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -433,7 +428,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 pdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring OFF on input line 16.
+Package hyperref Info: Link coloring OFF on input line 15.
  (D:\masters\air_lab\iocgm2027\docs\latex\research_plan.out)
 (D:\masters\air_lab\iocgm2027\docs\latex\research_plan.out)
 \@outlinefile=\write3
@@ -441,15 +436,9 @@ Package hyperref Info: Link coloring OFF on input line 16.
 
  [1
 
-{C:/Users/Somnath Luitel/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-Underfull \hbox (badness 4846) in paragraph at lines 64--65
-[]\OT1/cmr/m/n/12 SHAP de-pen-dency and sum-mary plots
- []
+{C:/Users/Somnath Luitel/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2]
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[2] [3] (D:\masters\air_lab\iocgm2027\docs\latex\research_plan.aux)
+(D:\masters\air_lab\iocgm2027\docs\latex\research_plan.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-03-20>
@@ -461,33 +450,36 @@ Package rerunfilecheck Warning: File `research_plan.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `research_plan.out':
-(rerunfilecheck)             Before: 67389C770EA252BE1B531B6857E5DE85;956
-(rerunfilecheck)             After:  93E905305AEF00BB3E5D7BB1D53C8828;1558.
+(rerunfilecheck)             Before: 93E905305AEF00BB3E5D7BB1D53C8828;1558
+(rerunfilecheck)             After:  B7AAC0EFFF2C116E06309B69161B39C9;1316.
  ) 
 Here is how much of TeX's memory you used:
- 10186 strings out of 467691
- 160946 string characters out of 5410595
- 586994 words of memory out of 5000000
- 39123 multiletter control sequences out of 15000+600000
+ 10089 strings out of 467691
+ 159467 string characters out of 5410595
+ 586945 words of memory out of 5000000
+ 39030 multiletter control sequences out of 15000+600000
  635613 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,79p,610b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Somnath Luitel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dp
-i600\tcrm1200.pk><C:/Users/Somnath Luitel/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Somnath Luitel/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Somnath Luitel/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/User
-s/Somnath Luitel/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
-mmi8.pfb><C:/Users/Somnath Luitel/AppData/Local/Programs/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmr10.pfb><C:/Users/Somnath Luitel/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Somnath Luitel/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Somnath 
-Luitel/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+ 75i,7n,79p,716b,613s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on D:\masters\air_lab\iocgm2027\docs\latex\research_plan.pdf (3 
-pages, 126690 bytes).
+pdfTeX warning (dest): name{section.5} has been referenced but does not exist, 
+replaced by a fixed one
+
+ <C:\Users\Somnath Luitel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi6
+00\tcrm1200.pk><C:/Users/Somnath Luitel/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Somnath Luitel/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Somnath Luitel/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/
+Somnath Luitel/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmm
+i8.pfb><C:/Users/Somnath Luitel/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmr10.pfb><C:/Users/Somnath Luitel/AppData/Local/Programs/MiKTeX/
+fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Somnath Luitel/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Somnath Lu
+itel/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on D:\masters\air_lab\iocgm2027\docs\latex\research_plan.pdf (2 
+pages, 133934 bytes).
 PDF statistics:
- 102 PDF objects out of 1000 (max. 8388607)
- 17 named destinations out of 1000 (max. 500000)
- 57 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 104 PDF objects out of 1000 (max. 8388607)
+ 16 named destinations out of 1000 (max. 500000)
+ 73 words of extra memory for PDF output out of 10000 (max. 10000000)
 
